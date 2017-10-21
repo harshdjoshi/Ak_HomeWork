@@ -31,7 +31,11 @@ public class Vuforia extends LinearOpMode
     OpenGLMatrix lastKnownLocation;
     OpenGLMatrix phoneLocation;
 
-    public static final String VUFORIA_KEY = "ARu0pnX/////AAAAGU7XB2WmyU5kv3ajbeT3HhRf7ACI3GFxKNWK2EwbVeTa1hXzuQbGfR7dsY1LMIs4pT04HYGuNnVhAp1tSsaqFNgkshKf98ER/MSIecMKhl4NQvFmW6WKA7xOMLJZKYe/T7bE1K/PJm53beyC2iqr9RXb6Yo8YLnTtHdMOv/Tj3jn6hW0drXzqmTGBW54BKz+fT0z27n9P+O/73olp4OYrRYR3tdr81en2sZaHYISZdF8ryKhPIgTIg98+C8WowtFXrB1C2b40dc78NXxWxCgEHt5YIDEXFTSLjB7wfr8FogqiPjBRGoiPwDrY9oRTpsXKMeZmDccEnjNOukwQWx/D6dPSL5lG1jECsVGWDHnzfaO"; // Insert key here
+    public static final String VUFORIA_KEY = "ARu0pnX/////AAAAGU7XB2WmyU5kv3ajbeT3HhRf7ACI" +
+            "3GFxKNWK2EwbVeTa1hXzuQbGfR7dsY1LMIs4pT04HYGuNnVhAp1tSsaqFNgkshKf98ER/MSIecMKhl4NQv" +
+            "FmW6WKA7xOMLJZKYe/T7bE1K/PJm53beyC2iqr9RXb6Yo8YLnTtHdMOv/Tj3jn6hW0drXzqmTGBW54BKz+fT" +
+            "0z27n9P+O/73olp4OYrRYR3tdr81en2sZaHYISZdF8ryKhPIgTIg98+C8WowtFXrB1C2b40dc78NXxWxCgEHt" +
+            "5YIDEXFTSLjB7wfr8FogqiPjBRGoiPwDrY9oRTpsXKMeZmDccEnjNOukwQWx/D6dPSL5lG1jECsVGWDHnzfaO"; 
 
     public void runOpMode() throws InterruptedException
     {
