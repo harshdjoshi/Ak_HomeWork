@@ -78,21 +78,13 @@ public class ServoClawTeleop extends OpMode
         }
 
         //Controlling the lift mechanism using y and a buttons
-        /*if(gamepad1.y)
+        if(gamepad1.y)
         {
                 liftMotor.setPower(0.5);
-                isYPressed = true;
-
         }
-        else
+        else if(gamepad1.a)
         {
-                isYPressed = false;
-                liftMotor.setPower(0);
-
-        }*/
-        if(gamepad1.a)
-        {
-            liftMotor.setPower(-0.5);
+                liftMotor.setPower(-0.5);
         }
         else
         {
