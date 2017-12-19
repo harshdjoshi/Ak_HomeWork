@@ -25,11 +25,6 @@ public class ServoClawTeleop extends OpMode
 
     double leftWheelPower;
     double rightWheelPower;
-    //double liftMotorPower;
-
-
-    boolean isYPressed;
-    boolean isAPressed;
 
     @Override
     public void init()
@@ -42,41 +37,28 @@ public class ServoClawTeleop extends OpMode
         rightClaw = hardwareMap.servo.get("right_claw");
 
         rightWheel.setDirection(DcMotorSimple.Direction.REVERSE);
-
     }
 
     @Override
     public void loop()
     {
 
-        leftWheelPower = -gamepad1.left_stick_y;
-        rightWheelPower = -gamepad1.right_stick_y;
+        leftWheelPower = gamepad1.left_stick_y;
+        rightWheelPower = gamepad1.right_stick_y;
 
         leftWheel.setPower(leftWheelPower);
         rightWheel.setPower(rightWheelPower);
 
         //Controlling the claw with the bumpers
-        if(gamepad1.left_trigger > 0.01)
+        if(gamepad1.left_bumper)
         {
-            leftClaw.setPosition(0.4);
-            rightClaw.setPosition(0.6);
+            leftClaw.setPosition(0.3);
+            rightClaw.setPosition(0.7);
         }
-        if(gamepad1.right_trigger > 0.01)
+        if(gamepad1.right_bumper)
         {
-            leftClaw.setPosition(0.6);
-            rightClaw.setPosition(0.4);
-        }
-
-        //Controlling the claw with the x and b buttons
-        if(gamepad1.x)
-        {
-            leftClaw.setPosition(0.4);
-            rightClaw.setPosition(0.6);
-        }
-        if(gamepad1.b)
-        {
-            leftClaw.setPosition(0.6);
-            rightClaw.setPosition(0.4);
+            leftClaw.setPosition(0.7);
+            rightClaw.setPosition(0.3);
         }
 
         //Controlling the lift mechanism using y and a buttons
@@ -92,6 +74,5 @@ public class ServoClawTeleop extends OpMode
         {
             liftMotor.setPower(0);
         }
-
     }
 }
