@@ -12,7 +12,7 @@ import com.qualcomm.robotcore.hardware.Servo;
  */
 @TeleOp(name="Gamepad Drive", group="Teleop")
 //@Disabled
-public class ServoClawTeleop extends OpMode
+public class TeleopMain extends OpMode
 {
 
 
@@ -22,9 +22,18 @@ public class ServoClawTeleop extends OpMode
 
     Servo leftClaw;
     Servo rightClaw;
+    Servo leftArm;
+    Servo rightArm;
 
     double leftWheelPower;
     double rightWheelPower;
+
+    double leftArmDefaultPosition = 0.45;
+    double rightArmDefaultPosition = 0.45;
+
+    double leftArmPosition = 1.00;
+    double rightArmPosition= 0.00;
+
 
     @Override
     public void init()
@@ -35,6 +44,14 @@ public class ServoClawTeleop extends OpMode
 
         leftClaw = hardwareMap.servo.get("left_claw");
         rightClaw = hardwareMap.servo.get("right_claw");
+        leftArm = hardwareMap.servo.get("left_arm");
+        rightArm = hardwareMap.servo.get("right_arm");
+
+        leftClaw.setPosition(0.5);
+        rightClaw.setPosition(0.5);
+
+        leftArm.setPosition(leftArmDefaultPosition);
+        rightArm.setPosition(rightArmDefaultPosition);
 
         rightWheel.setDirection(DcMotorSimple.Direction.REVERSE);
     }
@@ -42,23 +59,22 @@ public class ServoClawTeleop extends OpMode
     @Override
     public void loop()
     {
-
         leftWheelPower = gamepad1.left_stick_y;
         rightWheelPower = gamepad1.right_stick_y;
 
         leftWheel.setPower(leftWheelPower);
         rightWheel.setPower(rightWheelPower);
 
-        //Controlling the claw with the bumpers
-        if(gamepad1.left_bumper)
+        //Controlling the claw with the triggers
+        if(gamepad1.left_trigger > 0.01)
         {
-            leftClaw.setPosition(0.3);
-            rightClaw.setPosition(0.7);
+            leftClaw.setPosition(0.35);
+            rightClaw.setPosition(0.65);
         }
-        if(gamepad1.right_bumper)
+        if(gamepad1.right_trigger > 0.01)
         {
-            leftClaw.setPosition(0.7);
-            rightClaw.setPosition(0.3);
+            leftClaw.setPosition(0.65);
+            rightClaw.setPosition(0.35);
         }
 
         //Controlling the lift mechanism using y and a buttons
@@ -73,6 +89,24 @@ public class ServoClawTeleop extends OpMode
         else
         {
             liftMotor.setPower(0);
+        }
+
+        //Controlling the arms (will not be used in teleop mode so comment out)
+        if(gamepad1.x)
+        {
+            leftArm.setPosition(leftArmPosition);
+        }
+        else
+        {
+            leftArm.setPosition(leftArmDefaultPosition);
+        }
+        if(gamepad1.b)
+        {
+            rightArm.setPosition(rightArmPosition);
+        }
+        else
+        {
+            rightArm.setPosition(rightArmDefaultPosition);
         }
     }
 }
