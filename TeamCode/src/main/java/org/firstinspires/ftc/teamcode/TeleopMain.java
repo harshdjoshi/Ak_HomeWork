@@ -28,10 +28,10 @@ public class TeleopMain extends OpMode
     double leftWheelPower;
     double rightWheelPower;
 
-    double leftArmDefaultPosition = 0.45;
+    double leftArmDefaultPosition = 0.55;
     double rightArmDefaultPosition = 0.45;
 
-    double leftArmPosition = 1.00;
+    double leftArmPosition = 0.00;
     double rightArmPosition= 0.00;
 
 
@@ -59,7 +59,7 @@ public class TeleopMain extends OpMode
     @Override
     public void loop()
     {
-        leftWheelPower = gamepad1.left_stick_y;
+        leftWheelPower = gamepad1.left_stick_y; //-1 to 0
         rightWheelPower = gamepad1.right_stick_y;
 
         leftWheel.setPower(leftWheelPower);
@@ -80,11 +80,11 @@ public class TeleopMain extends OpMode
         //Controlling the lift mechanism using y and a buttons
         if(gamepad1.y)
         {
-               liftMotor.setPower(1.0);
+            liftMotor.setPower(1.0);
         }
         else if(gamepad1.a)
         {
-                liftMotor.setPower(-1.0);
+            liftMotor.setPower(-1.0);
         }
         else
         {
