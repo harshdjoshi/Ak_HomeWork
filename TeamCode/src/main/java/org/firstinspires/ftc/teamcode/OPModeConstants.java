@@ -2,6 +2,8 @@ package org.firstinspires.ftc.teamcode;
 
 import com.disnodeteam.dogecv.detectors.JewelDetector;
 
+import org.firstinspires.ftc.robotcore.external.navigation.RelicRecoveryVuMark;
+
 /**
  * Created by Akanksha.Joshi on 23-Dec-2017.
  */
@@ -10,12 +12,18 @@ public class OPModeConstants {
     private static OPModeConstants opModeConstants;
     public static double jewelArmActive = 0.52d;
     public static double jewelArmInactive = 0.00d;
+    public static double degreesToInch = 0.209d;
     public static boolean JewelDetectionDisabled = false;
+    public static final double ticksPerInch = 114.67;
+    public static final double gearRatio = 0.5;
     private OPModeConstants()
     {
         setFireSequence(FireSequence.UNKNOWN);
         setSelectedTeam(SelectedTeam.UNKNOWN);
         setDetectedOrder(JewelDetector.JewelOrder.UNKNOWN);
+        setCryptoLocation(RelicRecoveryVuMark.UNKNOWN);
+        setOrientation(Orientation.UNKNOWN);
+        setAutoSpeed(AutonomousSpeed.HIGH);
         jewelArmActive = 0.52d;
         jewelArmInactive = 0.00d;
         JewelDetectionDisabled = false;
@@ -41,26 +49,49 @@ public class OPModeConstants {
         BACKWARD,
         UNKNOWN
     }
-    public enum JewelKickerArmPostion //Do we really need this?
+    public enum jewelKickerArmPosition
     {
         REST,
         ACTION
     }
     public enum Orientation
     {
-        LEFT_SIDE,
-        RIGHT_SIDE,
+        FRONT_FACING,
+        BACK_FACING,
         UNKNOWN
     }
+    public enum AutonomousSpeed
+    {
+        SLOW,
+        MEDIUM,
+        HIGH
+    }
+    private RelicRecoveryVuMark cryptoLocation;
     private JewelDetector.JewelOrder jewel_order;
     private SelectedTeam selectedTeam;
     private FireSequence fireSequence;
-    private JewelKickerArmPostion jewelKickerArmPostion;
+    private jewelKickerArmPosition jewelKickerArmPosition;
     private Orientation orientation;
+    private AutonomousSpeed autoSpeed;
 
-    public void setOrientation (Orientation orientation)
-    {this.orientation = orientation;}
+    public AutonomousSpeed getAutoSpeed()
+    {
+        return autoSpeed;
+    }
+    public void setAutoSpeed(AutonomousSpeed speed)
+    {
+        autoSpeed = speed;
+    }
+    public void setOrientation (Orientation orientation) {this.orientation = orientation;}
     public Orientation getOrientation(){return orientation;}
+    public void setCryptoLocation(RelicRecoveryVuMark cryptoLocation)
+    {
+        this.cryptoLocation = cryptoLocation;
+    }
+    public RelicRecoveryVuMark getCryptoLocation()
+    {
+        return cryptoLocation;
+    }
     public void setDetectedOrder (JewelDetector.JewelOrder order){
         jewel_order = order;
     }
@@ -100,13 +131,13 @@ public class OPModeConstants {
         }
         return fireSequence;
     }
-    public void setJewelKickerArmPostion(JewelKickerArmPostion position)
+    public void setJewelKickerArmPosition(jewelKickerArmPosition position)
     {
-        jewelKickerArmPostion = position;
+        jewelKickerArmPosition = position;
     }
-    public JewelKickerArmPostion getJewelKickerArmPosition()
+    public jewelKickerArmPosition getJewelKickerArmPosition()
     {
-        return jewelKickerArmPostion;
+        return jewelKickerArmPosition;
     }
     public void Reset()
     {

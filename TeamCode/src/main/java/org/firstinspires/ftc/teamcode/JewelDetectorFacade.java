@@ -11,20 +11,15 @@ import java.io.IOException;
 public class JewelDetectorFacade
 {
     private static JewelDetectorFacade jewelDetectorFacadeInstance;
-    private static JewelDetector jewelDetector = null;
-
     public static JewelDetectorFacade getInstance()
     {
         if(jewelDetectorFacadeInstance == null)
         {
             jewelDetectorFacadeInstance = new JewelDetectorFacade();
-
         }
         return jewelDetectorFacadeInstance;
     }
     private JewelDetectorFacade()    {
-
-
     }
 
     public JewelDetector.JewelOrder getJewelOrder (JewelDetector jewelDetector)
