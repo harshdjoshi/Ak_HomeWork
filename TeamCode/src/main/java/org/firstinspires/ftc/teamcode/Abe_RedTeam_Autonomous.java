@@ -40,7 +40,7 @@ public class Abe_RedTeam_Autonomous extends LinearOpMode{
         resetStartTime();
 
         while(jewelOrder.GetTaskStatus()==false) {
-            jewelOrder.PerformTask(telemetry);
+            jewelOrder.PerformTask(telemetry, getRuntime());
             sleep(100);
         }
         telemetry.addData("Jewel Order ",opModeConstants.getDetectedOrder().toString());
@@ -50,7 +50,7 @@ public class Abe_RedTeam_Autonomous extends LinearOpMode{
         getCryptoKey.Init();
         while(getCryptoKey.GetTaskStatus() == false)
         {
-            getCryptoKey.PerformTask(telemetry);
+            getCryptoKey.PerformTask(telemetry, getRuntime());
             sleep(100);
 
         }
@@ -60,7 +60,7 @@ public class Abe_RedTeam_Autonomous extends LinearOpMode{
         jewelArm.Init();
         while(jewelArm.GetTaskStatus()==false)
         {
-            jewelArm.PerformTask(telemetry);
+            jewelArm.PerformTask(telemetry, getRuntime());
             sleep(100);
         }
         telemetry.addData("Fire Sequence ",opModeConstants.getFireSequence().toString());
@@ -68,7 +68,7 @@ public class Abe_RedTeam_Autonomous extends LinearOpMode{
         Task_JewelRemove jewelRemove = new Task_JewelRemove(hardwareMap);
         jewelRemove.Init();
         while(jewelRemove.GetTaskStatus() == false) {
-            jewelRemove.PerformTask(telemetry);
+            jewelRemove.PerformTask(telemetry, getRuntime());
             sleep(100);
         }
 
@@ -76,7 +76,7 @@ public class Abe_RedTeam_Autonomous extends LinearOpMode{
         jewelArm.Init();
         while(jewelArm.GetTaskStatus()==false)
         {
-            jewelArm.PerformTask(telemetry);
+            jewelArm.PerformTask(telemetry, getRuntime());
             sleep(100);
         }
         telemetry.addData("Tasks Completed In ", getRuntime());
